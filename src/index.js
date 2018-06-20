@@ -4,7 +4,7 @@ import cheerio from "cheerio";
 
 const app = express();
 
-app.get("/tags", async (req, res) => {
+app.get("/search", async (req, res) => {
   const { endpoint, tag } = req.query;
   const { data: pageContent } = await axios.get(endpoint);
   const $ = cheerio.load(pageContent);
@@ -15,7 +15,7 @@ app.get("/tags", async (req, res) => {
       innerHtml: $(this).html()
     })
   });
-  res.send({ tag: results });
+  res.send({ [tag]: results });
 });
 
 app.get("/exists", async (req, res) => {
