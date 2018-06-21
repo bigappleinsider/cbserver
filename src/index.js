@@ -1,8 +1,10 @@
 import express from "express";
+import cors from "cors";
 import axios from "axios";
 import cheerio from "cheerio";
 
 const app = express();
+app.use(cors());
 
 app.get("/search", async (req, res) => {
   const { endpoint, tag } = req.query;
